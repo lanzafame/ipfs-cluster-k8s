@@ -4,11 +4,11 @@ resources:
   - cluster-statefulset.yaml
   - env-configmap.yaml
 
-# vars:
-#   - name: IPFS_CLUSTER_SERVICE_NAME
-#     objref:
-#       kind: Service
-#       name: ipfs-cluster
-#       apiVersion: v1
-#     fieldref:
-#       fieldpath: metadata.name
+vars:
+  - name: CLUSTER_SVC_NAME
+    objref:
+      kind: Service
+      name: ipfs-cluster
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name

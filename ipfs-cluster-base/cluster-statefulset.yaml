@@ -8,9 +8,7 @@ metadata:
     prometheus.io/path: "debug/metrics/prometheus"
 spec:
   serviceName: ipfs-cluster
-  # If we have one single node, just use the bootstrap node and scale This
-  # to 0 replicas.
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: ipfs-cluster
@@ -19,12 +17,6 @@ spec:
       labels:
         app: ipfs-cluster
     spec:
-      # Init containers are used to prepare the clusters:
-      # The firest container `create-conf` will just ensure that the
-      # service.json is populated
-      # The second container `get-bootstrap-multiaddr` will run a custom script
-      # designed to extract the multiaddr of the bootstrap node in order to
-      # connect to it. Plz check the config map to know more how it works.
       initContainers:
         - name: configure-ipfs
           image: "ipfs/go-ipfs:v0.4.18"
@@ -76,12 +68,10 @@ spec:
           image: "ipfs/ipfs-cluster:latest"
           imagePullPolicy: IfNotPresent
           command: ["sh", "/custom/entrypoint.sh"]
+          envFrom:
+            - configMapRef:
+              name: env-config
           env:
-            - name: BOOTSTRAP_PEER_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: bootstrap-peer-id
             - name: BOOTSTRAP_PEER_PRIV_KEY
               valueFrom:
                 secretKeyRef:
@@ -94,6 +84,8 @@ spec:
                   key: cluster-secret
             - name: CLUSTER_MONITOR_PING_INTERVAL
               value: "3m"
+            - name: SVC_NAME
+              value: $(CLUSTER_SVC_NAME)
           ports:
             - name: api-http
               containerPort: 9094
@@ -107,13 +99,16 @@ spec:
           livenessProbe:
             tcpSocket:
               port: cluster-swarm
-            initialDelaySeconds: 60
+            initialDelaySeconds: 5
             timeoutSeconds: 5
-            periodSeconds: 15
-          # readinessProbe:
-          #   httpGet:
-          #     path: /id
-          #     port: api-http
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /id
+              port: api-http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
           volumeMounts:
             - mountPath: /data/ipfs-cluster
               name: cluster-storage
