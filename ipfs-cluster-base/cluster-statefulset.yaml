@@ -70,7 +70,7 @@ spec:
           command: ["sh", "/custom/entrypoint.sh"]
           envFrom:
             - configMapRef:
-              name: env-config
+                name: env-config
           env:
             - name: BOOTSTRAP_PEER_PRIV_KEY
               valueFrom:
