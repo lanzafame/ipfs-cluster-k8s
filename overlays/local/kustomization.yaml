@@ -1,0 +1,10 @@
+bases:
+  - ../../ipfs-cluster-base
+
+resources:
+  - secret.yaml
+
+patchesStrategicMerge:
+  - volumeclaim-patch.yaml
+  - env-configmap.yaml
+  - statefulset-annotations-patch.yaml
