@@ -75,6 +75,11 @@ spec:
             - configMapRef:
                 name: env-config
           env:
+            - name: BOOTSTRAP_PEER_ID
+              valueFrom:
+                configMapRef:
+                  name: env-config
+                  key: bootstrap-peer-id
             - name: BOOTSTRAP_PEER_PRIV_KEY
               valueFrom:
                 secretKeyRef:
@@ -113,8 +118,8 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 5
           volumeMounts:
-            - mountPath: /data/ipfs-cluster
-              name: cluster-storage
+            - name: cluster-storage
+              mountPath: /data/ipfs-cluster
             - name: configure-script
               mountPath: /custom
           resources:
