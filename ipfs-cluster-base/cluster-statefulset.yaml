@@ -65,8 +65,6 @@ spec:
               mountPath: /custom
           resources:
             {}
-
-
         - name: ipfs-cluster
           image: "ipfs/ipfs-cluster:latest"
           imagePullPolicy: IfNotPresent
