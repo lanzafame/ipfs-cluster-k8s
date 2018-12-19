@@ -2,10 +2,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: ipfs-cluster
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "5001"
-    prometheus.io/path: "debug/metrics/prometheus"
 spec:
   serviceName: ipfs-cluster
   replicas: 3
