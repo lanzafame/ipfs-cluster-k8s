@@ -1,5 +1,5 @@
 # Cluster Secret
-To genereate the `cluster_secret` value in `secret.yaml`, run the following and insert the output in the appropriate place in the `secret.yaml` file:
+To generate the `cluster_secret` value in `secret.yaml`, run the following and insert the output in the appropriate place in the `secret.yaml` file:
 
 ```sh
 $ od  -vN 32 -An -tx1 /dev/urandom | tr -d ' \n' | base64 -w 0 -

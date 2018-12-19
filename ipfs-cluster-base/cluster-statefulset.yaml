@@ -55,6 +55,13 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 5
             periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /api/v0/id
+              port: api
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
           volumeMounts:
             - mountPath: /data/ipfs
               name: ipfs-storage

@@ -22,7 +22,7 @@ data:
     if [ $? -eq 0 ]; then
       CLUSTER_ID=${BOOTSTRAP_PEER_ID} \
       CLUSTER_PRIVATEKEY=${BOOTSTRAP_PEER_PRIV_KEY} \
-      exec ipfs-cluster-service -d daemon --upgrade
+      exec ipfs-cluster-service daemon --upgrade
     else
       BOOTSTRAP_ADDR=/dns4/${SVC_NAME}-0/tcp/9096/ipfs/${BOOTSTRAP_PEER_ID}
 
@@ -30,19 +30,20 @@ data:
         exit 1
       fi
       # Only ipfs user can get here
-      exec ipfs-cluster-service -d daemon --upgrade --bootstrap $BOOTSTRAP_ADDR --leave
+      exec ipfs-cluster-service daemon --upgrade --bootstrap $BOOTSTRAP_ADDR --leave
     fi
 
   configure-ipfs.sh: |
     #!/bin/sh
     set -e
     set -x
-    user=ipfs
     # This is a custom entrypoint for k8s designed to run ipfs nodes in an appropriate
     # setup for production scenarios.
 
+    user=root
     mkdir -p /data/ipfs && chown -R ipfs /data/ipfs
 
+    user=ipfs
     if [ -f /data/ipfs/config ]; then
       if [ -f /data/ipfs/repo.lock ]; then
         rm /data/ipfs/repo.lock
