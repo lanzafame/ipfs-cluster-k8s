@@ -8,3 +8,4 @@ patchesStrategicMerge:
   - volumeclaim-patch.yaml
   - env-configmap.yaml
   - statefulset-annotations-patch.yaml
+  - service-patch.yaml

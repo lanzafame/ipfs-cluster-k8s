@@ -4,3 +4,10 @@ metadata:
   name: ipfs-cluster
 spec:
   type: LoadBalancer
+  ports:
+    - name: api-http
+      targetPort: api-http
+      port: 9094
+    - name: proxy-http
+      targetPort: proxy-http
+      port: 9095

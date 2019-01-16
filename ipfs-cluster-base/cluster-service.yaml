@@ -9,26 +9,32 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
+    # IPFS ports
     - name: swarm
       targetPort: swarm
       port: 4001
-    - name: swarm-udp
-      targetPort: swarm-udp
-      port: 4002
-    - name: ws
-      targetPort: ws
-      port: 8081
     - name: http
       targetPort: http
       port: 8080
-    - name: api-http
-      targetPort: api-http
-      port: 9094
-    - name: proxy-http
-      targetPort: proxy-http
-      port: 9095
+    # Cluster ports
     - name: cluster-swarm
       targetPort: cluster-swarm
       port: 9096
+
+    # Other IPFS ports; expose via overlay config
+    # - name: swarm-udp
+    #   targetPort: swarm-udp
+    #   port: 4002
+    # - name: ws
+    #   targetPort: ws
+    #   port: 8081
+
+    # Other Cluster ports; expose via overlay config
+    # - name: api-http
+    #   targetPort: api-http
+    #   port: 9094
+    # - name: proxy-http
+    #   targetPort: proxy-http
+    #   port: 9095
   selector:
     app: ipfs-cluster
