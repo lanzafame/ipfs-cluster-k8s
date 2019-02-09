@@ -3,4 +3,6 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  bootstrap-peer-id: "QmX3WeCAvptJV93dNkDxtroXXPX3D1ZXahKBsUqsNn1Lsb"
+  BOOTSTRAP_PEER_ID: "QmNWKVA28aJjLqhtZuvrnQ7CGrMFdfu4YBFpPn2nyDLVVg"
+  CLUSTER_RESTAPI_HTTPLISTENMULTIADDRESS: "/ip4/0.0.0.0/tcp/9094"
+  CLUSTER_IPFSPROXY_NODEMULTIADDRESS: "/ip4/0.0.0.0/tcp/5001"
