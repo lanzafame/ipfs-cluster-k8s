@@ -77,12 +77,12 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: env-config
-                  key: bootstrap-peer-id
+                  key: BOOTSTRAP_PEER_ID
             - name: BOOTSTRAP_PEER_PRIV_KEY
               valueFrom:
                 secretKeyRef:
                   name: secret-config
-                  key: bootstrap-peer-priv-key
+                  key: BOOTSTRAP_PEER_PRIV_KEY
             - name: CLUSTER_SECRET
               valueFrom:
                 secretKeyRef:
