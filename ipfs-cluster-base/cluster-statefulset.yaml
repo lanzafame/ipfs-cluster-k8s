@@ -73,11 +73,6 @@ spec:
             - configMapRef:
                 name: env-config
           env:
-            - name: BOOTSTRAP_PEER_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: BOOTSTRAP_PEER_ID
             - name: BOOTSTRAP_PEER_PRIV_KEY
               valueFrom:
                 secretKeyRef:
