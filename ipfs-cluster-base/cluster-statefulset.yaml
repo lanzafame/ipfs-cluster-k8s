@@ -77,7 +77,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secret-config
-                  key: BOOTSTRAP_PEER_PRIV_KEY
+                  key: bootstrap-peer-priv-key
             - name: CLUSTER_SECRET
               valueFrom:
                 secretKeyRef:
