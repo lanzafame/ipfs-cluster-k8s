@@ -75,7 +75,7 @@ spec:
           env:
             - name: BOOTSTRAP_PEER_ID
               valueFrom:
-                configMapRef:
+                configMapKeyRef:
                   name: env-config
                   key: bootstrap-peer-id
             - name: BOOTSTRAP_PEER_PRIV_KEY
