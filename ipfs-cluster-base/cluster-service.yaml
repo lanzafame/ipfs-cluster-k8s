@@ -2,8 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ipfs-cluster
-  annotations:
-      external-dns.alpha.kubernetes.io/hostname: example.com
   labels:
     app: ipfs-cluster
 spec:
@@ -13,9 +11,6 @@ spec:
     - name: swarm
       targetPort: swarm
       port: 4001
-    - name: http
-      targetPort: http
-      port: 8080
     # Cluster ports
     - name: cluster-swarm
       targetPort: cluster-swarm
@@ -25,6 +20,9 @@ spec:
     # - name: swarm-udp
     #   targetPort: swarm-udp
     #   port: 4002
+    # - name: http
+    #   targetPort: http
+    #   port: 8080
     # - name: ws
     #   targetPort: ws
     #   port: 8081
