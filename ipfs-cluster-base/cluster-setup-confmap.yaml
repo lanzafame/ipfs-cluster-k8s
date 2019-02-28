@@ -49,7 +49,7 @@ data:
     fi
 
     if [ -f /data/ipfs/config ]; then
-      ipfs daemon --migrate=true
+      ipfs daemon --migrate=true &
       ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001"]'
       ipfs config --json Addresses.API /ip4/0.0.0.0/tcp/5001
       ipfs config --json Addresses.Gateway /ip4/0.0.0.0/tcp/8080
@@ -59,7 +59,7 @@ data:
     fi
 
     ipfs init --profile=badgerds,server
-    ipfs daemon --migrate=true
+    ipfs daemon --migrate=true &
     ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001"]'
     ipfs config --json Addresses.API /ip4/0.0.0.0/tcp/5001
     ipfs config --json Addresses.Gateway /ip4/0.0.0.0/tcp/8080
