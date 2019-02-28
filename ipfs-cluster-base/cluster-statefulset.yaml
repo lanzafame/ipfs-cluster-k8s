@@ -13,19 +13,11 @@ spec:
       labels:
         app: ipfs-cluster
     spec:
-      initContainers:
-        - name: configure-ipfs
-          image: "ipfs/go-ipfs:v0.4.18"
-          command: ["sh", "/custom/configure-ipfs.sh"]
-          volumeMounts:
-            - name: ipfs-storage
-              mountPath: /data/ipfs
-            - name: configure-script
-              mountPath: /custom
       containers:
         - name: ipfs
           image: "ipfs/go-ipfs:v0.4.18"
           imagePullPolicy: IfNotPresent
+          command: ["sh", "/custom/cluster-entrypoint.sh"]
           env:
             - name: IPFS_FD_MAX
               value: "4096"
@@ -61,7 +53,7 @@ spec:
         - name: ipfs-cluster
           image: "ipfs/ipfs-cluster:latest"
           imagePullPolicy: IfNotPresent
-          command: ["sh", "/custom/entrypoint.sh"]
+          command: ["sh", "/custom/cluster-entrypoint.sh"]
           envFrom:
             - configMapRef:
                 name: env-config
