@@ -35,7 +35,6 @@ data:
 
   configure-ipfs.sh: |
     #!/bin/sh
-    set -e
     set -x
     # This is a custom entrypoint for k8s designed to run ipfs nodes in an appropriate
     # setup for production scenarios.
