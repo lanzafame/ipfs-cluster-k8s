@@ -39,16 +39,11 @@ data:
     # This is a custom entrypoint for k8s designed to run ipfs nodes in an appropriate
     # setup for production scenarios.
 
-    user=root
-    mkdir -p /data/ipfs && chown -R ipfs /data/ipfs
-
     if [ -f /data/ipfs/repo.lock ]; then
       rm /data/ipfs/repo.lock
     fi
 
     ipfs init --profile=badgerds,server 
-
-    chown -R ipfs /data/ipfs
 
     ipfs config Datastore.StorageMax 180GB
     ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001"]'
