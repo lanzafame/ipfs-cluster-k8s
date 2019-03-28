@@ -3,3 +3,4 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
+  IPFS_PROFILE: "badgerds,server"
