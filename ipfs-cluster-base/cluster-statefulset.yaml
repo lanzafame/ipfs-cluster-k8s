@@ -17,6 +17,12 @@ spec:
         - name: configure-ipfs
           image: "ipfs/go-ipfs:cluster-k8s"
           command: ["sh", "/custom/configure-ipfs.sh"]
+          env:
+            - name: IPFS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-config
+                  key: IPFS_PROFILE
           volumeMounts:
             - name: ipfs-storage
               mountPath: /data/ipfs
