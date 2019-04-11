@@ -52,4 +52,6 @@ data:
     ipfs config --json Swarm.ConnMgr.HighWater 2000
     ipfs config --json Datastore.BloomFilterSize 1048576
 
+    chown -R ipfs /data/ipfs
+
     exit 0
