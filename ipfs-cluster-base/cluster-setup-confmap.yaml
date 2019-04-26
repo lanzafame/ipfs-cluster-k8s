@@ -43,7 +43,6 @@ data:
       rm /data/ipfs/repo.lock
     fi
 
-    whoami
     ipfs init --profile="server,badgerds"
     ipfs config Datastore.StorageMax 180GB
     ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001"]'
