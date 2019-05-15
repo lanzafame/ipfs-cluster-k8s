@@ -22,7 +22,7 @@ data:
     if [ $? -eq 0 ]; then
       CLUSTER_ID=${BOOTSTRAP_PEER_ID} \
       CLUSTER_PRIVATEKEY=${BOOTSTRAP_PEER_PRIV_KEY} \
-      exec ipfs-cluster-service daemon --upgrade
+      exec ipfs-cluster-service daemon --upgrade --leave
     else
       BOOTSTRAP_ADDR=/dns4/${SVC_NAME}-0.${SVC_NAME}/tcp/9096/ipfs/${BOOTSTRAP_PEER_ID}
 
