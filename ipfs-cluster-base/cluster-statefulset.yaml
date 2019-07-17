@@ -15,7 +15,7 @@ spec:
     spec:
       initContainers:
         - name: configure-ipfs
-          image: "ipfs/go-ipfs:cluster-k8s"
+          image: "ipfs/go-ipfs:latest"
           command: ["sh", "/custom/configure-ipfs.sh"]
           volumeMounts:
             - name: ipfs-storage
